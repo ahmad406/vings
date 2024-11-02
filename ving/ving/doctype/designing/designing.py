@@ -18,7 +18,8 @@ class Designing(Document):
 					row.quantity=d.get("qty")
 					row.unit=frappe.db.get_value('Item', d.get("item_code"), 'stock_uom')
 					row.rate=get_item_price(d.get("item_code"),"Standard Selling")
-					row.amount=row.rate*row.quantity
+					if row.rate and  row.quantity:
+						row.amount=row.rate * row.quantity
 				
 	def item_already_in(self,item):
 		status=False
